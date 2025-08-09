@@ -6,7 +6,6 @@ A real-time baggage tracking system for airline operations built with modern clo
 
 - **Backend**: Java 17 + Spring Boot 3.x
 - **Frontend**: React 18 + TypeScript
-- **Mobile**: React Native (Planned)
 - **Database**: PostgreSQL 14+ on AWS RDS
 - **Infrastructure**: AWS (VPC, RDS, ECS, S3, CloudFront)
 - **DevOps**: Terraform, Docker, GitHub Actions
@@ -31,7 +30,7 @@ A real-time baggage tracking system for airline operations built with modern clo
 - Terraform 1.6+ installed
 - Git for version control
 
-## 🏁 Quick Start
+## Quick Start
 
 ### Infrastructure Deployment
 ```bash

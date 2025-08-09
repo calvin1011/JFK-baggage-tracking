@@ -7,6 +7,8 @@ Thumbs.db
 .idea/
 *.swp
 *.swo
+*.iml
+.eclipse/
 
 # Terraform
 *.tfstate
@@ -20,6 +22,15 @@ target/
 *.war
 *.ear
 *.class
+
+# Maven
+.mvn/wrapper/maven-wrapper.jar
+mvnw
+mvnw.cmd
+
+# Spring Boot
+application-local.yml
+application-secret.yml
 
 # Node.js
 node_modules/
