@@ -17,7 +17,7 @@ resource "aws_secretsmanager_secret_version" "db_password" {
 # DB Subnet Group
 resource "aws_db_subnet_group" "main" {
   name       = "${var.project_name}-db-subnet-group-${var.environment}"
-  subnet_ids = aws_subnet.private[*].id
+  subnet_ids = aws_subnet.public[*].id
 
   tags = {
     Name = "${var.project_name}-db-subnet-group-${var.environment}"
@@ -47,7 +47,7 @@ resource "aws_db_instance" "main" {
   # Network & Security
   vpc_security_group_ids = [aws_security_group.rds.id]
   db_subnet_group_name   = aws_db_subnet_group.main.name
-  publicly_accessible    = false
+  publicly_accessible    = true  # Changed to true for external access
 
   # Backup & Maintenance
   backup_retention_period = 7
@@ -65,6 +65,17 @@ resource "aws_db_instance" "main" {
   tags = {
     Name = "${var.project_name}-database-${var.environment}"
   }
+}
+
+# Security Group Rule for External Database Access
+resource "aws_security_group_rule" "rds_external_access" {
+  type              = "ingress"
+  from_port         = 5432
+  to_port           = 5432
+  protocol          = "tcp"
+  cidr_blocks       = ["129.110.241.33/32"]
+  security_group_id = aws_security_group.rds.id
+  description       = "Allow PostgreSQL access from developer IP"
 }
 
 # IAM Role for RDS Monitoring
