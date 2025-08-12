@@ -29,8 +29,8 @@ public interface FlightRepository extends JpaRepository<Flight, Long> {
     List<Flight> findByStatus(Flight.FlightStatus status);
 
     // Find current flights (departing today)
-    @Query("SELECT f FROM Flight f WHERE DATE(f.scheduledDeparture) = CURRENT_DATE")
-    List<Flight> findTodaysFlights();
+    // @Query("SELECT f FROM Flight f WHERE DATE(f.scheduledDeparture) = CURRENT_DATE")
+    // List<Flight> findTodaysFlights();
 
     // Find flights with baggage
     @Query("SELECT DISTINCT f FROM Flight f JOIN f.baggage b")
